@@ -4,29 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookings</title>
+    <link href="3.css" rel="stylesheets" />
+    <style>
+        h1{
+            text-align: center;
+            background-image: url(media/image);
+        }
+     
+        p.dis{
+            color: brown;
+            display:inline;
+            float: right;
+        }
+        h2.ps{
+            position:static;
+        }
+        img#im{
+            z-index: -1;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        form.bot{
+        background-color: lightgrey;
+        width: 300px;
+        border: 15px solid green;
+        border-radius: 25px;
+        padding: 50px;
+        margin: 20px
+       }
+      div.bimg{
+    
+      border: 5px solid transparent;
+      padding: 15px;
+      border-image: url(media/borderimage.jpg) 10 stretch;
 
+      }
+      .animated-element {
+         animation: myAnimation 2s ease-in-out 0s infinite;
+       }
+       @keyframes myAnimation {
+       0% {
+       transform: scale(1);
+       }
+      50% {
+       transform: scale(1.2);
+       }
+      100% {
+      transform: scale(1);
+      }
+     }
+     .box {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    animation: moveRight 3s linear infinite;
+}
+
+@keyframes moveRight {
+    from {
+        left: 0;
+    }
+    to {
+        left: calc(100% - 50px);
+    }
+}
+
+    
+
+        
+    </style>
 </head>
 <body>
-    <div>
-        <nav> <a href="https://in.bookmyshow.com/">book_my_show</a></nav>
+    <div class="nav"> 
         <header>
-            <h1>Ticket Bookings</h1>
+            <h1 style="font-style: italic;">Ticket Bookings</h1>
         </header>
+        <img id="im" src="data:image/png;base64,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" width="50" height="50">
+    </div>
+    <nav> <a href="https://in.bookmyshow.com/">book_my_show</a></nav>
+    <div>
+        <h2 class="ps">About Movies </h2>
+    </div>
+    <div class="animated-element">Animated Element</div>
+    <div class="box"></div>
+    <div id="anime"></div>
+    <div class="bimg">
+        Lorem ipsum dolor <p class="dis">Lorem ipsum dolor sit amet.</p>sit amet,consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    
     </div>
     <div>
-        <h3>About Movies </h3>
-        <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-     <form>
+     <form class="bot">
          <label for="firstname">Enter your Firstname  </label><input type="text" name="firstname" id="form_elements" placeholder="enter legal name"><br>
-         <label for="lastname">Enter your lastname  </label><input type="text" name="lastname" id="form_elements"><br>
+         <label for="lastname">Enter your lastname  </label><input type="text" name="lastname" id="form_elements" required><br>
          <label for="phoneno">Phone no  </label><input type="tel" name="phoneno" id="form_elements"><br>
          <label for="email">Email  </label><input type="email" name="emailid"><br>
          <label for="date&time">Date  </label><input type="datetime-local" name="date&time" ><br>
-         <label for="colour">Select ur Favorite colour  </label><input type="color" name="color" ><br>
+         <label for="colour">Select ur Favorite colour  </label><input type="color"  ><br>
          <label for="checkbox">Are you above 18:  </label><input type="checkbox" name="checkbox" ><br>
-         <label for="imgage-upload">Upload ur pic  </label><input type="file" name="image_upload" ><br>
+         <label for="image-upload">Upload ur pic  </label><input type="file" name="image_upload" ><br>
          <label for="Movies"> Select the movie </label>
          <input list="Movies" name="movie" id="movie">
 
@@ -41,14 +121,14 @@
     <div>
         <section>
             <article>
-                <h1>About Movies</h1>
+                <h2>About Movies</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                 </p>
             </article>
-        
+             <div class="img">
                 <img src="https://st3.depositphotos.com/1064045/15061/i/450/depositphotos_150614902-stock-photo-unusual-cinema-concept-3d-illustration.jpg" alt="movie img" height="300px" width="350px">
-            
+             </div>
         
             <h3>about director</h3>
             <aside>
@@ -56,7 +136,7 @@
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     </p>
             </aside>
-             <figure><img src="https://st3.depositphotos.com/1064045/15061/i/450/depositphotos_150614902-stock-photo-unusual-cinema-concept-3d-illustration.jpg" alt="book img" height="300px"  width="350px"></figure>   
+             <figure><img src="https://st3.depositphotos.com/1064045/15061/i/450/depositphotos_150614902-stock-photo-unusual-cinema-concept-3d-illustration.jpg" alt="movie img" height="300px"  width="350px"><figcaption>fig-1</figcaption></figure>   
         </section>
     </div>
     <div>
@@ -67,7 +147,7 @@
         </summary>
 
         <details>
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            abcdsed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Elementum nibh tellus molestie nunc. Sem viverra aliquet eget sit amet tellus cras. 
                     Nunc sed blandit libero volutpat sed cras ornare arcu.
         </details>
@@ -75,37 +155,15 @@
     <ol>
         <li>jvknvmhrfiu</li>
     </ol>
-    <ol type="1">
+    <ol type="1" >
       <li> jndjjrij</li>
       <li>uhrgbgkn</li>   
- </ol>
-    <ul >
-        <li>uhrfvkn</li>
-    </ul>
-    <!-- it can be square circle disc -->
-     <ul type="square" > 
-        <li>hjvnfj</li>
-    </ul>
-    <!-- list inside a list -->
-    <ul>
-        <li>ghuthug</li>
-        <ul>
-            <li>hfbvhgih</li>
-        </ul>
-    </ul>
-    <!-- table -->
-    <ol>
-        <li>jvknvmhrfiu</li>
     </ol>
-    <ol type="1">
-      <li> jndjjrij</li>
-      <li>uhrgbgkn</li>   
- </ol>
     <ul >
         <li>uhrfvkn</li>
     </ul>
     <!-- it can be square circle disc -->
-     <ul type="square" > 
+     <ul type="disc" > 
         <li>hjvnfj</li>
     </ul>
     <!-- list inside a list -->
@@ -116,6 +174,8 @@
         </ul>
     </ul>
     <!-- table -->
+    
+  
 
     <table>
         <thead>
@@ -150,7 +210,26 @@
     </footer>
             
         
-                
-        
+    <details>
+        <summary>Click to toggle</summary>
+        <p>This is the hidden content that will be shown or hidden when the user clicks the summary.</p>
+    </details>
+      <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<wbr>vvvvvvvvvvvvvvvvvv<wbr>hjhjhjhkljkljl</p>      
+      <center>
+        <p>AUDIO</p>
+        <audio controls>
+          <source src="https://media.geeksforgeeks.org/wp-content/uploads/20190531165842/Recording1514.ogg" type="audio/ogg">
+        </audio>
+        <p>VIDEO</p>
+        <video controls autoplay width="300" height="250">
+          <source src="media/friday.mp4">
+          <track kind="subtitles" src="media/movie.en.vtt" srclang="en" label="English subtitles" default>
+          Your browser doesn't support subtitles
+        </video>
+        <p>embed</p>
+        <embed src="https://www.youtube.com/embed/tY3mlOUV2Xw?si=SsY7qbivnX6q_mIN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </center>
+   
+
 </body>
 </html>
