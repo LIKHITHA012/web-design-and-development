@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Registration</title>
+    <style>
+        .error {
+            color: red;
+        }
+        body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+ }
+
+ h1 {
+ text-align: center;
+ }
+
+ section {
+ max-width: 500px;
+ margin: 0 auto;
+ padding: 20px;
+ border: 1px solid #d5d0d0;
+ border-radius: 5px;
+ box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+ }
+
+ form input[type="text"],
+ form input[type="password"],
+ form input[type="email"],
+ form input[type="tel"] {
+ display: block;
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 10px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+ box-sizing: border-box;
+ }
+
+ form input[type="submit"] {
+ background-color: #4CAF50;
+ color: white;
+ padding: 10px 20px;
+ border: none;
+ border-radius: 25px;
+ cursor: pointer;
+ font-size: 16px;
+ }
+
+ form input[type="submit"]:hover {
+ background-color: #aac647;
+ }
+ </style>
+    </style>
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+             
+            var nameError = document.getElementById('nameError');
+            var passwordError = document.getElementById('passwordError');
+            var emailError = document.getElementById('emailError');
+            var phoneError = document.getElementById('phoneError');
+
+            var nameRegex = /^[A-Za-z]{6,}$/;
+            var passwordRegex = /^.{6,}$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var phoneRegex = /^\d{10}$/;
+
+            var isValid = true;
+
+            if (!nameRegex.test(name)) {
+                nameError.innerText = "Please enter a valid name (at least 6 characters long, alphabets only).";
+                isValid = false;
+            } else {
+                nameError.innerText = "";
+            }
+
+            if (!passwordRegex.test(password)) {
+                passwordError.innerText = "Please enter a password with at least 6 characters.";
+                isValid = false;
+            } else {
+                passwordError.innerText = "";
+            }
+
+            if (!emailRegex.test(email)) {
+                emailError.innerText = "Please enter a valid email address.";
+                isValid = false;
+            } else {
+                emailError.innerText = "";
+            }
+
+            if (!phoneRegex.test(phone)) {
+                phoneError.innerText = "Please enter a valid 10-digit phone number.";
+                isValid = false;
+            } else {
+                phoneError.innerText = "";
+            }
+            if (isValid) {
+               
+                alert("Successfully registered!"); 
+            }
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    <h2 style="text-align: center;">Job Registration</h2>
+    <section >
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <span id="nameError" class="error"></span><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <span id="passwordError" class="error"></span><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <span id="emailError" class="error"></span><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone" required><br>
+        <span id="phoneError" class="error"></span><br>
+        Education Qualification: <input type="text" name="qualification"> <br>
+
+        <center><input type="submit" value="Submit"></center>
+    </form>
+    </section>
+</body>
+</html>
+
+
+
+4b
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salary Employee Information</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(160, 217, 221);
+    }
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #eaf2ef;
+        color: rgb(155, 147, 138);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .salary-report {
+        margin-top: 20px;
+    }
+    .salary-report h3 {
+        margin-bottom: 10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ac6a6a;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #846181;
+    }
+</style>
+</head>
+<body>
+<h2 style="text-align: center;">Salary Employee Information</h2>
+<form id="salaryForm">
+    <label for="employeeName">Employee Name:</label>
+    <input type="text" id="employeeName" required><br><br>
+    
+    <label for="employeeID">Employee ID:</label>
+    <input type="text" id="employeeID" required><br><br>
+    
+    <label for="basicPay">Basic Pay:</label>
+    <input type="number" id="basicPay" required><br><br>
+    
+    <button type="button" onclick="calculateSalary()">Calculate Salary</button>
+</form>
+
+<div id="salaryReport"></div>
+
+<script>
+function calculateSalary() {
+    const employeeName = document.getElementById('employeeName').value;
+    const employeeID = document.getElementById('employeeID').value;
+    const basicPay = parseFloat(document.getElementById('basicPay').value);
+    
+    const da = basicPay * 0.4; // DA (40% of Basic Pay)
+    const hra = basicPay * 0.3; // HRA (30% of Basic Pay)
+    const pf = basicPay * 0.12; // PF (12% of Basic Pay)
+    const tax = basicPay * 0.1; // TAX (10% of Basic Pay)
+    
+    const grossPay = basicPay + da + hra;
+    const deduction = pf + tax;
+    const netPay = grossPay - deduction;
+    
+    const salaryReport = `
+        <h3>Salary Report</h3>
+        <table>
+            <tr>
+                <th>Employee Name</th>
+                <td>${employeeName}</td>
+            </tr>
+            <tr>
+                <th>Employee ID</th>
+                <td>${employeeID}</td>
+            </tr>
+            <tr>
+                <th>Basic Pay</th>
+                <td>${basicPay}</td>
+            </tr>
+            <tr>
+                <th>DA</th>
+                <td>${da}</td>
+            </tr>
+            <tr>
+                <th>HRA</th>
+                <td>${hra}</td>
+            </tr>
+            <tr>
+                <th>PF</th>
+                <td>${pf}</td>
+            </tr>
+            <tr>
+                <th>TAX</th>
+                <td>${tax}</td>
+            </tr>
+            <tr>
+                <th>Gross Pay</th>
+                <td>${grossPay}</td>
+            </tr>
+            <tr>
+                <th>Deduction</th>
+                <td>${deduction}</td>
+            </tr>
+            <tr>
+                <th>Net Pay</th>
+                <td>${netPay}</td>
+            </tr>
+        </table>
+    `;
+    
+    document.getElementById('salaryReport').innerHTML = salaryReport;
+}
+</script>
+</body>
+</html>
