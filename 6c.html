@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Information</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #3b5a75;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color:lightskyblue;
+        }
+        img {
+            max-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Information</h1>
+    <table id="booksTable">
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Author Name</th>
+                <th>Book Price</th>
+                <th>Book Image</th>
+            </tr>
+        </thead>
+        <tbody id="booksTableBody">
+            <!-- Table rows will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    displayBookInfo(this);
+                }
+            };
+            xmlhttp.open("GET", "books.xml", true);
+            xmlhttp.send();
+        });
+
+        function displayBookInfo(xml) {
+            const xmlDoc = xml.responseXML;
+            const books = xmlDoc.getElementsByTagName("book");
+            const booksTableBody = document.getElementById("booksTableBody");
+
+            for (let i = 0; i < books.length; i++) {
+                const book = books[i];
+                const name = book.getElementsByTagName("name")[0].textContent;
+                const author = book.getElementsByTagName("author")[0].textContent;
+                const price = book.getElementsByTagName("price")[0].textContent;
+                const image = book.getElementsByTagName("image")[0].textContent;
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${author}</td>
+                    <td>${price}</td>
+                    <td><img src="${image}" alt="${name}"></td>
+                `;
+                booksTableBody.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>
